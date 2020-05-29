@@ -37,6 +37,9 @@
 		FA5D2D2C24751A1600D4DE36 /* BookmarksModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D2D2B24751A1600D4DE36 /* BookmarksModule.swift */; };
 		FA5D2D2E247530C000D4DE36 /* ModalDismissedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5D2D2D247530C000D4DE36 /* ModalDismissedDelegate.swift */; };
 		FA7035EA2481332A003EF76E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = FA7035E92481332A003EF76E /* .gitignore */; };
+		FA7035EF24813525003EF76E /* screen_1.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7035EC24813524003EF76E /* screen_1.png */; };
+		FA7035F024813525003EF76E /* screen_2.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7035ED24813524003EF76E /* screen_2.png */; };
+		FA7035F124813525003EF76E /* screen_3.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7035EE24813524003EF76E /* screen_3.png */; };
 		FA73F182246D1F2900C6CFE1 /* RecentNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73F181246D1F2900C6CFE1 /* RecentNewsViewController.swift */; };
 		FA73F184246D20E200C6CFE1 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73F183246D20E200C6CFE1 /* NewsView.swift */; };
 		FA73F186246D20F400C6CFE1 /* NewsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA73F185246D20F400C6CFE1 /* NewsView.xib */; };
@@ -111,6 +114,9 @@
 		FA5D2D2B24751A1600D4DE36 /* BookmarksModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksModule.swift; sourceTree = "<group>"; };
 		FA5D2D2D247530C000D4DE36 /* ModalDismissedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDismissedDelegate.swift; sourceTree = "<group>"; };
 		FA7035E92481332A003EF76E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		FA7035EC24813524003EF76E /* screen_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_1.png; sourceTree = "<group>"; };
+		FA7035ED24813524003EF76E /* screen_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_2.png; sourceTree = "<group>"; };
+		FA7035EE24813524003EF76E /* screen_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screen_3.png; sourceTree = "<group>"; };
 		FA73F181246D1F2900C6CFE1 /* RecentNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentNewsViewController.swift; sourceTree = "<group>"; };
 		FA73F183246D20E200C6CFE1 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		FA73F185246D20F400C6CFE1 /* NewsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsView.xib; sourceTree = "<group>"; };
@@ -231,6 +237,16 @@
 			path = Bookmarks;
 			sourceTree = "<group>";
 		};
+		FA7035EB24813470003EF76E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FA7035EC24813524003EF76E /* screen_1.png */,
+				FA7035ED24813524003EF76E /* screen_2.png */,
+				FA7035EE24813524003EF76E /* screen_3.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		FA9981BF246A8F6F000B69C5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +286,7 @@
 		FAE76796246A80A900500618 = {
 			isa = PBXGroup;
 			children = (
+				FA7035EB24813470003EF76E /* Images */,
 				FA7035E92481332A003EF76E /* .gitignore */,
 				FA807A81247E6036008E3E07 /* README.md */,
 				FAE767C9246A8D7B00500618 /* Podfile */,
@@ -529,7 +546,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7035F024813525003EF76E /* screen_2.png in Resources */,
 				FA7035EA2481332A003EF76E /* .gitignore in Resources */,
+				FA7035F124813525003EF76E /* screen_3.png in Resources */,
+				FA7035EF24813525003EF76E /* screen_1.png in Resources */,
 				FAE767B2246A80AA00500618 /* LaunchScreen.storyboard in Resources */,
 				FAE767AF246A80AA00500618 /* Assets.xcassets in Resources */,
 				FA73F186246D20F400C6CFE1 /* NewsView.xib in Resources */,
