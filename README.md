@@ -1,7 +1,7 @@
 # News | Clean Architecture sample application
 This is sample application using Clean Architecture, MVVM and RxSwift
 
-![Recent News](https://raw.githubusercontent.com/alexmalishev270896/circularseekbar/master/Images/screen_3.png)
+![Recent News](https://raw.githubusercontent.com/alexmalishev270896/news_app/master/Images/screen_3.png)
 
 ## Technologies & Methodologies
 * Clean Architecture
