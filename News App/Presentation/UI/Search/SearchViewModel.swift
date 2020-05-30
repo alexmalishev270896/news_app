@@ -8,27 +8,50 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol ISearchViewModel{
-    func search(by query: String) -> Single<[NewsProjection.NewsItem]>
+    var searchResult: Driver<ViewState<[NewsProjection.NewsItem]>> { get }
+    func search(by query: String)
 }
 
 class SearchViewModel: ISearchViewModel{
     
-    private let searchNewsUseCase: ISearchNewsUseCase
-    
-    init(searchUseCase: ISearchNewsUseCase) {
-        self.searchNewsUseCase = searchUseCase
+    var searchResult: Driver<ViewState<[NewsProjection.NewsItem]>>{
+        return mSearchResult.asDriver()
     }
     
-    func search(by query: String) -> Single<[NewsProjection.NewsItem]> {
-        return searchNewsUseCase.execute(query)
+    private let searchNewsUseCase: ISearchNewsUseCase
+    private var searchDisposable: Disposable?
+    private var mSearchResult = BehaviorRelay<ViewState<[NewsProjection.NewsItem]>>(value: .loading)
+    private var schedulerProvider: ISchedulerProvider
+    
+    init(searchUseCase: ISearchNewsUseCase, schedulerProvider: ISchedulerProvider) {
+        self.searchNewsUseCase = searchUseCase
+        self.schedulerProvider = schedulerProvider
+    }
+    
+    func search(by query: String) {
+        searchDisposable?.dispose()
+        if (query.count < 3) {
+            mSearchResult.accept(.success([]))
+            return
+        }
+        searchDisposable = searchNewsUseCase.execute(query)
             .map{ news -> [NewsProjection.NewsItem] in
                 news.map{ newsItem -> NewsProjection.NewsItem in
                     newsItem.toNewsItemProjection()
                 }
             }
-            .subscribeOn(SerialDispatchQueueScheduler(qos: .background))
-            .observeOn(MainScheduler.instance)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
+            .do(onSubscribe: { self.mSearchResult.accept(.loading) })
+            .subscribe(
+                    onSuccess: { news in
+                        self.mSearchResult.accept(.success(news))
+                    },
+                    onError: { error in
+                        self.mSearchResult.accept(.error)
+                    })
     }
 }

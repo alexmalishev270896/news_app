@@ -65,7 +65,7 @@ class NewsDetailViewController: UIViewController {
         newsTitleLabel.text = newsItem?.title
         newsAuthorLabel.text = newsItem?.author
         newsSourceLabel.text = newsItem?.sourceName
-        newsDateLabel.text = newsItem?.formattedDate(format: "HH:MM dd MMMM, YYYY")
+        newsDateLabel.text = newsItem?.formattedDate(format: "HH:MM, dd MMMM YYYY")
         bookmarkButton.isSelected = newsItem?.isBookmarked ?? false
         newsContentLabel.text = newsItem?.content
         if let urlString = newsItem?.imageUrl, let url = URL(string: urlString){

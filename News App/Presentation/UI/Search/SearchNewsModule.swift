@@ -16,6 +16,6 @@ class SearchNewsConfigurator: BaseConfigurator<SearchViewController>{
         let newsRemoteSource = NewsRemoteSource()
         let newsRepository = NewsRepository(remoteSource: newsRemoteSource, newsLocalSource: newsLocalSource)
         let useCase = SearchNewsUseCase(repository: newsRepository)
-        viewController.viewModel = SearchViewModel(searchUseCase: useCase)
+        viewController.viewModel = SearchViewModel(searchUseCase: useCase, schedulerProvider: SchedulerProvider())
     }
 }

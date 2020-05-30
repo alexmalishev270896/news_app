@@ -31,7 +31,7 @@ class BookmarksViewController: UIViewController {
         configurator.configure(with: self)
         bookmarksTableView.dataSource = self
         bookmarksTableView.delegate = self
-        title = "Bookmarks"
+        navigationItem.title = "Bookmarks".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         
         viewModel?.bookmarks
@@ -48,8 +48,6 @@ class BookmarksViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,8 +61,6 @@ class BookmarksViewController: UIViewController {
             detailsVC.newsItem = sender as? NewsProjection.NewsItem
         }
     }
-    
-
 }
 
 extension BookmarksViewController: ModalDismissedDelegate{
@@ -74,7 +70,6 @@ extension BookmarksViewController: ModalDismissedDelegate{
 }
 
 extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookmarks.count

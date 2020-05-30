@@ -1,0 +1,11 @@
+
+//  Localizations.strings
+//  News App
+
+//  Created by Александр Малышев on 30.05.2020.
+//  Copyright © 2020 Alex Malishev. All rights reserved.
+
+"Bookmarks" = "Bookmarks";
+"Search" = "Search";
+"Type something here" = "Type something here";
+"Recent News" = "Recent News";

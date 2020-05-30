@@ -25,7 +25,7 @@ class NewsView: UIView {
         didSet {
             sourceName.text = newsItem.sourceName
             articleDescription.text = newsItem.title
-            date.text = newsItem.formattedDate(format: "HH:mm MMMM dd, yyyy")
+            date.text = newsItem.formattedDate(format: "HH:mm, dd MMMM yyyy")
             if let url = URL(string: newsItem.imageUrl){
                 newsImage.clipsToBounds = true
                 newsImage.layer.cornerRadius = CGFloat(16)

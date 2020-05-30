@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "Here you can find any news.\nJust start to search"; ObjectID = "7ow-pz-3qg"; */
+"7ow-pz-3qg.text" = "Here you can find any news.\nJust start to search";
+
+/* Class = "UITabBarItem"; title = "Recent"; ObjectID = "8VU-0l-aGq"; */
+"8VU-0l-aGq.title" = "Recent";
+
+/* Class = "UILabel"; text = "Author"; ObjectID = "AAl-H4-hbk"; */
+"AAl-H4-hbk.text" = "Author";
+
+/* Class = "UILabel"; text = "Source"; ObjectID = "IQQ-Zx-OCq"; */
+"IQQ-Zx-OCq.text" = "Source";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "J3N-dD-wwO"; */
+"J3N-dD-wwO.text" = "Label";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "K6X-x3-e6d"; */
+"K6X-x3-e6d.text" = "Date";
+
+/* Class = "UILabel"; text = "News Title"; ObjectID = "TBX-W1-cFe"; */
+"TBX-W1-cFe.text" = "News Title";
+
+/* Class = "UITabBarItem"; title = "Bookmarks"; ObjectID = "Vuj-uC-o2f"; */
+"Vuj-uC-o2f.title" = "Bookmarks";
+
+/* Class = "UILabel"; text = "Here you can find your\nbookmarks"; ObjectID = "lUG-5K-OGJ"; */
+"lUG-5K-OGJ.text" = "Here you can find your\nbookmarks";
+
+/* Class = "UIButton"; normalTitle = "Open in Safari"; ObjectID = "qPv-v2-UZn"; */
+"qPv-v2-UZn.normalTitle" = "Open in Safari";

@@ -22,21 +22,28 @@ class RecentNewsViewController: UIViewController {
         }
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
-        title = "Recent News"
+        navigationItem.title = "Recent News".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         newsTableView.dataSource = self
         newsTableView.delegate = self
         newsTableView.delaysContentTouches = false
-        viewModel?.getRecentNews()
-            .subscribe(onSuccess: { news in
-                self.recentNews = news
+        viewModel?.recentNews
+            .drive(onNext: { [unowned self] newsState in
+                switch (newsState){
+                case .error:
+                    break
+                case .loading:
+                    break
+                case .success(let items):
+                    self.recentNews = items
+                    break
+                }
             })
             .disposed(by: disposeBag)
+        viewModel?.getRecentNews()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

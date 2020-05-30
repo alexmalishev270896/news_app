@@ -8,27 +8,45 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol IRecentNewsViewModel: class {
-    func getRecentNews() -> Single<Array<NewsProjection.NewsItem>>
+    var recentNews: Driver<ViewState<[NewsProjection.NewsItem]>> { get }
+    func getRecentNews()
 }
 
 class RecentNewsViewModel: IRecentNewsViewModel {
     
-    private var getRecentNewsUseCase: IGetRecentNewsUseCase
-    
-    init(getRecentNewsUseCase: IGetRecentNewsUseCase) {
-        self.getRecentNewsUseCase = getRecentNewsUseCase
+    var recentNews: Driver<ViewState<[NewsProjection.NewsItem]>>{
+        return mRecentNews.asDriver()
     }
     
-    func getRecentNews() -> Single<Array<NewsProjection.NewsItem>> {
-        return getRecentNewsUseCase.execute()
+    private var mRecentNews = BehaviorRelay<ViewState<[NewsProjection.NewsItem]>>(value: .loading)
+    private var getRecentNewsUseCase: IGetRecentNewsUseCase
+    private let schedulerProvider: ISchedulerProvider
+    private let disposeBag = DisposeBag()
+    
+    init(getRecentNewsUseCase: IGetRecentNewsUseCase,
+         schedulerProvider: ISchedulerProvider) {
+        self.getRecentNewsUseCase = getRecentNewsUseCase
+        self.schedulerProvider = schedulerProvider
+    }
+    
+    func getRecentNews(){
+        getRecentNewsUseCase.execute()
             .debug()
             .map{ news -> Array<NewsProjection.NewsItem> in
                 news.map { newsItem -> NewsProjection.NewsItem in newsItem.toNewsItemProjection() }
             }
-            .subscribeOn(SerialDispatchQueueScheduler(qos: .background))
-            .observeOn(MainScheduler.instance)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
+            .subscribe(
+                onSuccess: { news in
+                    self.mRecentNews.accept(ViewState.success(news))
+                },
+                onError: { error in
+                    self.mRecentNews.accept(ViewState.error)
+                })
+            .disposed(by: disposeBag)
     }
-    
 }

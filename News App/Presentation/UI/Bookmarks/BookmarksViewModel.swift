@@ -33,7 +33,7 @@ class BookmarksViewModel: IBookmarksViewModel{
     func getBookmarks() {
         getSavedNewsUseCase.execute()
             .map{ news in news.map{ newsItem in newsItem.toNewsItemProjection() }.reversed()}
-            .subscribeOn(schedulerProvider.ui())
+            .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe(
                 onSuccess: { news in

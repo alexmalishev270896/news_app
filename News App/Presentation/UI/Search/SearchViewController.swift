@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     private let configurator: BaseConfigurator = SearchNewsConfigurator()
-    private var newsDisposable: Disposable?
+    private let disposeBag = DisposeBag()
     private var newsItems: [NewsProjection.NewsItem] = [] {
         didSet{
             searchTableView.reloadData()
@@ -31,10 +31,25 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
-        title = "Search"
+        navigationItem.title = "Search".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         setupTableView()
         setupSearchController()
+        
+        viewModel?.searchResult
+            .drive(onNext: { [unowned self] searchState in
+                switch(searchState){
+                case .loading:
+                    break
+                case .error:
+                    break
+                case .success(let result):
+                    self.newsItems = result
+                    break
+                }
+                
+            })
+        .disposed(by: disposeBag)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,7 +62,7 @@ class SearchViewController: UIViewController {
     private func setupSearchController(){
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Type something here"
+        searchController.searchBar.placeholder = "Type something here".localized
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
@@ -61,14 +76,8 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
-        if let text = searchController.searchBar.text, text.count >= 3 {
-            newsDisposable?.dispose()
-            newsDisposable = viewModel?.search(by: text)
-                .subscribe(onSuccess: { news in
-                    self.newsItems = news
-                })
-        }else {
-            self.newsItems = []
+        if let text = searchController.searchBar.text {
+            viewModel?.search(by: text)
         }
     }
 }

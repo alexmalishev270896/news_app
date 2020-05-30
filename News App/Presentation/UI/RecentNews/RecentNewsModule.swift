@@ -18,6 +18,6 @@ class RecentNewsConfigurator: BaseConfigurator<RecentNewsViewController>{
         let newsRepository = NewsRepository(remoteSource: newsRemoteSource, newsLocalSource: newsLocalSource)
         let checkNewsExists = CheckNewsExistsUseCase(repository: newsRepository)
         let useCase = GetRecentNewsUseCase(newsRepository: newsRepository, newsExistsUseCase: checkNewsExists)
-        viewController.viewModel = RecentNewsViewModel(getRecentNewsUseCase: useCase)
+        viewController.viewModel = RecentNewsViewModel(getRecentNewsUseCase: useCase, schedulerProvider: SchedulerProvider())
     }
 }
