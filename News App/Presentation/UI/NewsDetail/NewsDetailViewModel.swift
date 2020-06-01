@@ -48,11 +48,11 @@ class NewsDetailViewModel : INewsDetailViewModel{
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe(
-                onSuccess: {news in
-                    self.mNewsDetails.accept(ViewState.success(news))
+                onSuccess: { [weak mNewsDetails] news in
+                    mNewsDetails?.accept(ViewState.success(news))
                 },
-                onError: {error in
-                    self.mNewsDetails.accept(ViewState.error)
+                onError: { [weak mNewsDetails] error in
+                    mNewsDetails?.accept(ViewState.error)
                 }
             )
             .disposed(by: disposeBag)
@@ -66,11 +66,11 @@ class NewsDetailViewModel : INewsDetailViewModel{
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe(
-                onSuccess: {news in
-                    self.mNewsDetails.accept(ViewState.success(news))
+                onSuccess: { [weak mNewsDetails] news in
+                    mNewsDetails?.accept(ViewState.success(news))
                 },
-                onError: {error in
-                    self.mNewsDetails.accept(ViewState.error)
+                onError: { [weak mNewsDetails] error in
+                    mNewsDetails?.accept(ViewState.error)
                 }
             )
             .disposed(by: disposeBag)
@@ -84,11 +84,11 @@ class NewsDetailViewModel : INewsDetailViewModel{
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe(
-                onSuccess: {news in
-                    self.mNewsDetails.accept(ViewState.success(news))
+                onSuccess: { [weak mNewsDetails] news in
+                    mNewsDetails?.accept(ViewState.success(news))
                 },
-                onError: {error in
-                    self.mNewsDetails.accept(ViewState.error)
+                onError: { [weak mNewsDetails] error in
+                    mNewsDetails?.accept(ViewState.error)
                 }
             )
             .disposed(by: disposeBag)

@@ -45,13 +45,13 @@ class SearchViewModel: ISearchViewModel{
             }
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
-            .do(onSubscribe: { self.mSearchResult.accept(.loading) })
+            .do(onSubscribe: { [weak mSearchResult] in mSearchResult?.accept(.loading) })
             .subscribe(
-                    onSuccess: { news in
-                        self.mSearchResult.accept(.success(news))
+                    onSuccess: { [weak mSearchResult] news in
+                        mSearchResult?.accept(.success(news))
                     },
-                    onError: { error in
-                        self.mSearchResult.accept(.error)
+                    onError: { [weak mSearchResult] error in
+                        mSearchResult?.accept(.error)
                     })
     }
 }

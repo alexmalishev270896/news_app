@@ -36,11 +36,11 @@ class BookmarksViewModel: IBookmarksViewModel{
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe(
-                onSuccess: { news in
-                    self.mBookmarks.accept(ViewState.success(news))
+                onSuccess: { [weak mBookmarks] news in
+                    mBookmarks?.accept(ViewState.success(news))
                 },
-                onError: { error in
-                    self.mBookmarks.accept(ViewState.error)
+                onError: { [weak mBookmarks] error in
+                    mBookmarks?.accept(ViewState.error)
                 }
             )
             .disposed(by: disposeBag)

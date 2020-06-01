@@ -41,12 +41,13 @@ class RecentNewsViewModel: IRecentNewsViewModel {
             .subscribeOn(schedulerProvider.io())
             .observeOn(schedulerProvider.ui())
             .subscribe(
-                onSuccess: { news in
-                    self.mRecentNews.accept(ViewState.success(news))
+                onSuccess: { [weak mRecentNews] news in
+                    mRecentNews?.accept(ViewState.success(news))
                 },
-                onError: { error in
-                    self.mRecentNews.accept(ViewState.error)
-                })
+                onError: { [weak mRecentNews] error in
+                    mRecentNews?.accept(ViewState.error)
+                }
+            )
             .disposed(by: disposeBag)
     }
 }
